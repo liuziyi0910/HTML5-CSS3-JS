@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+				<!--两组实现的对比:
+				1.俩种布局方式都是把主列放在文档流最前面，使主列优先加载。
+				2.两种布局方式在实现上也有相同之处，都是让三列浮动，然后通过负外边距形成三列布局。
+				3.两种布局方式的不同之处在于如何处理中间主列的位置：
+						圣杯布局是利用父容器的左、右内边距+两个从列相对定位；
+						双飞翼布局是把主列嵌套在一个新的父级块中利用主列的左、右外边距进行布局调整
+				-->
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				min-width: 600px;
+			}
+			#header,#footer{
+				height: 20px;
+				border: 1px solid pink;
+				text-align: center;
+			}
+			#content .middle,#content .left,#content .right{
+				padding-bottom: 10000px;
+				margin-bottom: -10000px;
+				height :100px;
+				line-height: 100px;
+				float: left;
+			}
+			#content{
+				overflow: hidden;
+			}
+			#content .middle{
+				width: 100%;
+				background: darkblue;
+			}
+			#content .middle .m_inner{
+				padding: 0 200px;
+				text-align: center;
+			}
+			#content .left,#content .right{
+				background: #666666;
+				width: 200px;
+				text-align: center;
+			}
+			#content .left{
+				margin-left: -100%;
+			}
+			#content .right{
+				margin-left: -200px;
+			}
+		</style>
+	</head>
+	<body>
+				<div id="header">
+					<h4>header</h4>
+				</div>
+				<div id="content">
+					<div class="middle">
+						<div class="m_inner">
+							middle
+							middle
+							middle
+							middle
+						</div>
+					</div>
+					<div class="left">left</div>
+					<div class="right">right</div>
+				</div>
+				<div id="footer">
+					<h4>footer</h4>
+				</div>
+	</body>
+</html>

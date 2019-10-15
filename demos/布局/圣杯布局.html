@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<!--
+			1.两边固定  当中自适应
+			2.当中列要完整显示
+			3.当中列要优先加载
+		-->
+		
+		<!--
+			浮动:	搭建完整的布局框架
+			margin 为负值:调整旁边两列的位置(使三列布局到一行上)
+			使用相对定位:调整旁边两列的位置（使两列位置调整到两头）
+		-->
+		
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#header,#footer{
+				text-align: center;
+				background: gray;
+				border: 1px solid deeppink;
+				height: 20px;
+			}
+			bod {
+				min-width: 600px;
+			}
+			#content{
+				padding: 0 200px;
+				overflow: hidden;
+			}
+			#content .middle,#content .left,#content .right{
+				padding-bottom: 10000px;
+				margin-bottom: -10000px;
+				float: left;
+			}
+			#content .middle{
+				width: 100%;
+				background: #11719E;
+			}
+			#content .left{
+				position: relative;
+				background: yellow;
+				margin-left: -100%;
+				width: 200px;
+				left: -200px;
+			}
+			#content .right{
+				position: relative;
+				background: yellow;
+				margin-left: -200px;
+				width: 200px;
+				right: -200px;
+			}
+			
+			
+			
+			.clearfix{
+				*zoom: 1;
+			}
+			.clearfix:after{
+				content: "";
+				display: block;
+				clear: both;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="header">header</div>
+		<div id="content" class="clearfix">
+			<div class="middle">
+				<h4>middle</h4>
+				<h4>middle</h4>
+				<h4>middle</h4>
+				<h4>middle</h4>
+				<h4>middle</h4>
+				<h4>middle</h4>
+				<h4>middle</h4>
+				<h4>middle</h4>
+			</div>
+			<div class="left">left</div>
+			<div class="right">right</div>
+		</div>
+		<div id="footer">footer</div>
+	</body>
+</html>

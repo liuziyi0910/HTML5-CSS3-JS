@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+
+/* 		绝对定位盒子的特性
+			高宽有内容撑开
+			水平方向上：   			left + right + width + padding + margin = 包含块padding区域的尺寸
+									 0        0      100        0       0            400
+			垂直方向上：  			 top + bottom + height + padding + margin = 包含块padding区域的尺寸
+									 0        0      100        0       0			 600
+ */
+/*  1.在普通内容流中，margin:auto的效果等同于margin-top:0;margin-bottom:0。relative的上下外边距auto=0S
+
+	2.position:absolute使绝对定位块跳出了内容流，内容流中的其余部分渲染时绝对定位部分不进行渲染。
+
+	3.为块区域设置top: 0; left: 0; bottom: 0; right: 0;将给浏览器重新分配一个边界框，此时该块块将填充其父元素的所有可用空间，所以margin 垂直方向上有了可分配的空间。
+但设置子容器宽高为100%表示继承父容器宽高，即父容器不管多大子容器始终为父容器的百分百。
+而设置top:0，left:0，right:0，bottom:0本质目的，是让子盒子四边与父容器间距为0，而子盒子没有明确宽高，自然被拉伸到完全填满父容器了。
+这也是为何上文中对于让盒子垂直水平居中时必须要有明确宽高的原因。
+	4.再设置margin 垂直方向上下为auto，即可实现垂直居中。（注意高度得设置）。 */
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#wrap{
+				position: relative;
+				width: 400px;
+				height: 600px;
+				background: pink;
+				margin: 0 auto;
+			}
+			#inner{
+				position: absolute;
+				width: 100px;
+				height: 100px;
+				left: 0;
+				top: 0; 
+				bottom: 0;
+				right: 0;
+				margin: auto;
+				background: #016999;
+				text-align: center;
+				line-height: 100px;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<div id="inner">
+					test
+			</div>
+		</div>
+	</body>
+</html>
+
