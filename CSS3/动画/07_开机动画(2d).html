@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,usrt-scalable=no"/>
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			html,body{
+				height: 100%;
+				overflow: hidden;
+			}
+			#wrap{
+				height: 100%;
+				position: relative;
+				background: whitesmoke;
+			}
+			#wrap > .inner{
+				text-align: center;
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				transform: translate3d(-50%,-50%,0);
+				white-space: nowrap;
+			}
+			#wrap > .inner >span{
+				position: relative;
+			}
+			
+			@keyframes move{
+				from{
+					top: 0px;
+				}
+				to{
+					top: -10px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<div class="inner">
+				<span>P</span>
+				<span>H</span>
+				<span>O</span>
+				<span>S</span>
+				<span>P</span>
+				<span>O</span>
+				<span>P</span>
+				<span>H</span>
+				<span>Y</span>
+				<span>L</span>
+				<span>L</span>
+				<span>T</span>
+				<span>E</span>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		window.onload = function(){
+			var spanNodes = document.querySelectorAll("#wrap > .inner > span");
+			var color = ["red","orange","yellow","green","blue","pink","deeppink","red","orange","yellow","green","blue","pink"];
+			for(var i = 0;i<spanNodes.length;i++){
+				spanNodes[i].style.color = color[i];
+				spanNodes[i].style.animation = "move .3s "+(i*50)+"ms linear infinite alternate";
+			}
+		}
+		
+		window.onload=function(){
+			var spanNodes = document.querySelectorAll("#wrap > .inner >span");
+			var colors=["red","orange","yellow","green","blue","pink","deeppink","red","orange","yellow","green","blue","pink"];
+			for(var i=0;i<spanNodes.length;i++){
+				spanNodes[i].style.animation="move .3s "+(i*50)+"ms linear infinite alternate";
+				spanNodes[i].style.color=colors[i];
+			}
+		}
+		
+		
+		
+	</script>
+</html>
