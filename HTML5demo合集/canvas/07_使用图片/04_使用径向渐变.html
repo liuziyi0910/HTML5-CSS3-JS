@@ -36,14 +36,6 @@
 			var canvas = document.querySelector("#test");
 			if(canvas.getContext){
 				var ctx = canvas.getContext("2d");
-				
-				/*var img = new Image();
-				img.src="tg.png";
-				img.onload=function(){
-					draw();
-				}*/
-				
-//				function draw(){
 					var gradient = ctx.createRadialGradient(150, 150, 50, 150, 150, 100)
 					gradient.addColorStop(0,"red");
 					gradient.addColorStop(0.5,"yellow");
@@ -51,8 +43,7 @@
 					gradient.addColorStop(1,"green");
 					ctx.fillStyle=gradient;
 					ctx.fillRect(0,0,300,300);
-//				}
-				
+
 			}
 		}
 		

@@ -23,7 +23,8 @@
 			canvas{
 				position: absolute;
 				left: 0;
-				top: 0;
+				top:0;
+				transition: 1s;
 			}
 		</style>
 	</head>
@@ -33,43 +34,37 @@
 			<ul>
 				<li></li>
 			</ul>
+			
 		</div>
 	</body>
 	<script type="text/javascript">
-		window.onload=function(){
+		window.onload = function(){
 			var canvas = document.querySelector("canvas");
 			canvas.width = document.documentElement.clientWidth;
 			canvas.height = document.documentElement.clientHeight;
 			if(canvas.getContext){
 				var ctx = canvas.getContext("2d");
 				var img = new Image();
-				img.src="img/a.png";
-				img.onload=function(){
+				img.src = "img/a.png";
+				img.onload = function(){
 					draw();
 				}
-				
-				
 				function draw(){
+					var flag = 0;
 					ctx.drawImage(img,0,0,canvas.width,canvas.height);
-					
-					
 					canvas.addEventListener("touchstart",function(ev){
-						ev = ev||event;
+						ev = ev ||event;
 						var touchC = ev.changedTouches[0];
-						
 						var x = touchC.clientX - canvas.offsetLeft;
-						var y = touchC.clientY - canvas.offsetTop;
-						
-						
-						ctx.globalCompositeOperation="destination-out";
-						ctx.lineWidth=40;
-						ctx.lineCap="round";
-						ctx.lineJoin="round";
+						var y = touchC.clientY - canvas.offsertTop;
+						ctx.globalCompositeOperation ="destination-out";
+						ctx.lineWidth = 40;
+						ctx.lineCap =　"round";
+						ctx.lineJoin = "round";
 						ctx.save();
-						ctx.beginPath();
-//						ctx.arc(x,y,20,0,360*Math.PI/180);
+						ctx.beginPath;
 						ctx.moveTo(x,y);
-						ctx.lineTo(x+1,y+1)
+						ctx.lineTo(x+1,y+1);
 						ctx.stroke();
 						ctx.restore();
 					})
@@ -77,21 +72,34 @@
 					canvas.addEventListener("touchmove",function(ev){
 						ev = ev||event;
 						var touchC = ev.changedTouches[0];
-						
 						var x = touchC.clientX - canvas.offsetLeft;
 						var y = touchC.clientY - canvas.offsetTop;
-						
 						ctx.save();
-//						ctx.arc(x,y,20,0,360*Math.PI/180);
-						ctx.lineTo(x,y)
+						ctx.lineTo(x,y);
 						ctx.stroke();
 						ctx.restore();
 					})
 					
+					canvas.addEventListener("touchend",function(){
+						var imgData = ctx.getImageData(0,0,canvas.width,canvas.height);
+						var allPx = imgData.width * imgData.height;
+						for(var i = 0;i<allPx;i++){
+							if(imgData.data[4*i+3]===0){
+								flag++
+							}
+						}
+						if(flag>=allPx/2){
+							canvas.style.opacity = 0;
+						}
+					})
+					
+					canvas.addEventListener("transitionend",function(){
+						this.remove();
+					})
 				}
 			}
+			
+			
 		}
-		
-		
 	</script>
 </html>

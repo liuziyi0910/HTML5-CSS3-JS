@@ -46,13 +46,13 @@
 					data:数组
 						每一个像素点的rgba信息
 				*/
-						
+
+				
 				var imageData = ctx.getImageData(0,0,100,100);
 				for(var i=0;i<imageData.data.length;i++){
-					imageData.data[4*i+3]=100;
+					imageData.data[4*i+3] = 100;
 				}
-				ctx.putImageData(imageData,0,0)
-				
+				ctx.putImageData(imageData,50,0)
 			}
 		}
 		

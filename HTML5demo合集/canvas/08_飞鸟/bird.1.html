@@ -32,37 +32,36 @@
 		</canvas>
 	</body>
 	<script type="text/javascript">
-		window.onload=function(){
-			var canvas = document.querySelector("#test");
+		window.onload = function(){
+			var canvas= document.querySelector("#test");
 			canvas.width = document.documentElement.clientWidth;
 			canvas.height = document.documentElement.clientHeight;
 			if(canvas.getContext){
 				var ctx = canvas.getContext("2d");
-				var flag = 0;
-				var value=0;
+				var flag = 0 ;
+				var value = 0;
 				setInterval(function(){
-					ctx.clearRect(0,0,canvas.width,canvas.height)
+					ctx.clearRect(0,0,canvas.width,canvas.height);
 					value+=10;
 					flag++;
-					if(flag==9){
-						flag=1;
+					if(flag == 9){
+						flag = 1;
 					}
-					
 					var img = new Image();
-					img.src="img/q_r"+(flag)+".jpg";
-					img.onload=function(){
+					img.src = "img/q_r"+(flag)+".jpg";
+					img.onload = function(){
 						draw(this);
 					}
-					
 				},100)
 				
 				function draw(img){
-					ctx.drawImage(img,value,0)
+					ctx.drawImage(img,value,0);
 				}
+				
+				
 				
 			}
 		}
-		
 		
 	</script>
 </html>

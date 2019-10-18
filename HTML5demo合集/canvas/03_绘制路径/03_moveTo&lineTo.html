@@ -33,8 +33,7 @@
 	</body>
 	<script type="text/javascript">
 		window.onload=function(){
-			//querySelector身上有坑
-			//拿到画布
+
 			var canvas = document.querySelector("#test");
 			if(canvas.getContext){
 				var ctx = canvas.getContext("2d");
@@ -47,8 +46,8 @@
 				ctx.lineTo(50,200);
 				ctx.lineTo(150,80);
 				ctx.lineTo(150,100);
-				
-//				ctx.moveTo(200,200);
+				//moveTo有提笔的过程
+				ctx.moveTo(200,200);
 				ctx.lineTo(200,200);
 				ctx.lineTo(200,300);
 				ctx.stroke();

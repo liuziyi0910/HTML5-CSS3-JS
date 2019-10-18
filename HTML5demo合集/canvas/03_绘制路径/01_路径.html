@@ -33,28 +33,21 @@
 	</body>
 	<script type="text/javascript">
 		window.onload=function(){
-			//querySelector身上有坑
-			//拿到画布
-			var canvas = document.querySelector("#test");
-			if(canvas.getContext){
-				var ctx = canvas.getContext("2d");
-				
-				ctx.strokeStyle="deeppink";
-				ctx.lineWidth=10;
-				
-				ctx.moveTo(100,100);
-				ctx.lineTo(100,200);
-				ctx.lineTo(200,200);
-				ctx.closePath();
-				ctx.stroke();
-				
-				
+			var canvas = document.querySelector("#test")
+				if(canvas.getContext){
+					var ctx = canvas.getContext("2d");
+					ctx.strokeStyle = "deeppink";
+					ctx.lineWidth = 10;
+					ctx.moveTo(100,100);
+					ctx.lineTo(100,200);
+					ctx.lineTo(200,200);
+					ctx.closePath();
+					ctx.stroke();
+					ctx.fill();
+				}
 
-				//fill方法会自动合并路径
-				ctx.fill();
-				
 			}
-		}
+		
 		
 		
 	</script>

@@ -14,12 +14,18 @@
 	</body>
 	<script type="text/javascript">
 		window.onload = function(){
-			var oC =document.getElementById('c1');
-			var oGC = oC.getContext('2d');
-			oGC.font = '60px impact';
-			oGC.textBaseline = 'middle';  //middle bottom
-			var w = oGC.measureText('尚硅谷').width;
-			oGC.fillText('尚硅谷',(oC.width - w)/2 , (oC.height - 60)/2);
+			var canvas = document.getElementById("c1");
+			if(canvas.getContext){
+				ctx = canvas.getContext("2d");
+				ctx.font ="60px impact";
+				ctx.textBaseline = "middle";
+				var w = ctx.measureText("lzy").width;
+				ctx.fillText("lzy",(canvas.width - w)/2 , (canvas.height -60)/2);
+				console(w);
+				
+			}
+
+
 		};
 	</script>
 </html>
