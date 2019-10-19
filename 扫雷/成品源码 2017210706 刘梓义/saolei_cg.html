@@ -10,65 +10,65 @@
     <script>
         window.onload = function()
         {
-            var box = document.getElementById('box');//id=扫雷行列
+            var box = document.getElementById('box');
             var arr_num = new Array();
             var arr_type = new Array();
-            arr_num = [0,10,40,120];//设置的难度对应雷数
-            arr_type = [0,10,16,24];//设置的难度对应行列数
+            arr_num = [0,10,40,120];
+            arr_type = [0,10,16,24];
 
-            $('#new_1').click(function()//id=新开始游戏-刷新
+            $('#new_1').click(function()
             {
                 window.location.reload();
             })
 
-            $('#sure').click(function()//id=开始游戏
+            $('#sure').click(function()
             {
-                var width = $('#width').val();//id=宽度
-                var high = $('#high').val();//id=长度
-                var num = $('#num_mine').val();//id=雷数
-                var val = $('#set_num').val();//id=内置难度
-                if( val == 4)//选择自定义难度
+                var width = $('#width').val();
+                var high = $('#high').val();
+                var num = $('#num_mine').val();
+                var val = $('#set_num').val();
+                if( val == 4)
                 {
-                    if(isNaN(width)||isNaN(high))  //输入为空，显示错误
+                    if(isNaN(width)||isNaN(high)) 
                     {
                         alert('输入错误！');
                         return false;
                     }
-                    var game = new MineCraft(width,high,num,box,4);//使用输入数据调用构造函数
+                    var game = new MineCraft(width,high,num,box,4);
                 }
-                else//选择内置难度
+                else
                 {
-                    var game = new MineCraft(arr_type[val],arr_type[val],arr_num[val],box,$('#set_num').val()-1);//使用内置难度数据调用构造函数
+                    var game = new MineCraft(arr_type[val],arr_type[val],arr_num[val],box,$('#set_num').val()-1);
                 }
-                $('#set_num').attr('disabled',true);//选择后不能输入数据
+                $('#set_num').attr('disabled',true);
                 $(this).attr('disabled',true);
             })
 
-            $("#time_best").click(function()//点击显示最佳时间
+            $("#time_best").click(function()
             {
-                $('#best_grade').toggle('fast');//显示界面
+                $('#best_grade').toggle('fast');
             })
 
-            $('#set_num').change(function()//输入或选择发生改变
+            $('#set_num').change(function()
             {
-                if(this.value == 4)//选择自定义状态
+                if(this.value == 4)
                 {
                     flag = false;
                 }
-                else//选择初中高级
+                else
                 {
                     flag = true;
                 }
 
                 for(var i = 0,len = $('input').length;i<len;i++)
                 {
-                    $('input').attr('disabled',flag);//能否输入数据-自定义可以输入，其他选择等级不能输入
+                    $('input').attr('disabled',flag);
                 }
             })
             
-            $("#ul_dj_list").click(function(e)//id=选择难度等级
+            $("#ul_dj_list").click(function(e)
             {
-                $("#ul_dj_list>li").css(//表格css样式设置
+                $("#ul_dj_list>li").css(
                 {
                     'backgroundColor':'white'
                 });        
@@ -77,11 +77,11 @@
                 var $target = $(e.target);
                 var index = $target.index();
               
-                console.log(!!localStorage.time);//在页面中一直显示所用时间-计时
+                console.log(!!localStorage.time);
                 if(!!localStorage.time)
                 {
                     var arr_grade = new Array();
-                    arr_grade = JSON.parse(localStorage.time);//读取时间并存入
+                    arr_grade = JSON.parse(localStorage.time);
                     $('#ul_time_list>li').each(function(v)
                     {
                     if(arr_grade[index][v] == undefined)
@@ -97,7 +97,7 @@
            }
 
                 var arr_details = new Array();
-                arr_details = JSON.parse(localStorage.details);//读取数据并存入
+                arr_details = JSON.parse(localStorage.details);
                 var len = $('#ul_time_list>li').length;              
                 
                 $('#game_details span').each(function(v)
@@ -107,16 +107,16 @@
 
             })
 
-            $('#close').click(function()//关闭信息统计
+            $('#close').click(function()
             {
-                $('#best_grade').hide();//隐藏界面
+                $('#best_grade').hide();
             })
 
-            $('#clear_jl').click(function()//重置信息
+            $('#clear_jl').click(function()
             {
-                localStorage.clear();//清除存入数据
-                $('#new_1').click();//新开始游戏
-                $('#time_best').click();//重置最佳时间-清零
+                localStorage.clear();
+                $('#new_1').click();
+                $('#time_best').click();
             })
 
         }
@@ -126,7 +126,7 @@
     <body>
         <ul>
             <span>
-                <select name="" id="set_num"><!--难度设置-->
+                <select name="" id="set_num">
                     <option value=1>初级</option>
                     <option value=2>中级</option>
                     <option value=3>高级</option>
@@ -134,26 +134,26 @@
                 </select>
                 宽度：<input type="text" name="" id='width' disabled="true" />高度：<input type="text" id = 'high' disabled="true" />
                 <i style = "color:red">请设置雷个数：</i><input type="text" id = 'num_mine' disabled="true" />
-                <button id = "sure">确定</button><!--开始游戏-->
+                <button id = "sure">确定</button>
             </span>
-            <span id = "new_1">New Game!!!</span><!--新游戏-->
-            <span id = "time_need" class = "time">0</span><!--已用时间-->
-            <span id = "time_best" class = "time">信息统计</span><!--信息统计-->
+            <span id = "new_1">New Game!!!</span>
+            <span id = "time_need" class = "time">0</span>
+            <span id = "time_best" class = "time">信息统计</span>
         </ul>
         <div id = "best_grade">
             <div id = "dj_list">
-                <ul id = "ul_dj_list"><!--难度-->
+                <ul id = "ul_dj_list">
                     <li>初级</li>
                     <li>中级</li>
                     <li>高级</li>
                 </ul>
             </div>
             <div style="position:absolute; left:30px;top:150px;">
-                <button id = "clear_jl">重置信息</button><!--重置信息-->
-                    <button id="close">关闭</button><!--关闭显示-->
+                <button id = "clear_jl">重置信息</button>
+                    <button id="close">关闭</button>
             </div>
 
-            <div id = "grades_list"><!--最佳时间显示排行-->
+            <div id = "grades_list">
                 <span>最佳时间</span>
                 <ul id = "ul_time_list">
                     <li></li>
@@ -163,7 +163,7 @@
                     <li></li>
                 </ul>
             </div>
-            <div id="game_details"><!--信息显示-->
+            <div id="game_details">
                 <li>已玩游戏：<span></span></li>
                 <li>已胜游戏：<span></span></li>
                 <li>游戏胜率：<span></span></li>
@@ -174,7 +174,7 @@
             </div>
             
         </div>
-        <div id = 'box'></div>  <!--扫雷行列-->
+        <div id = 'box'></div>  
         
     </body>
 </html>
