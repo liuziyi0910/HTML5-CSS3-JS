@@ -11,7 +11,7 @@
         this.num1 = width;//行数
         this.num2 = height;//列数                       
         this.mine_num = mine_num;//雷的个数
-        this.tiles = new Array();//数组里面存放的是每个小格子
+        this.tiles = new Array();
         this.obj = obj;//扫雷放置的格子对象
         this.flag = true;//判断是否为第一次点击，默认为ture
         this.arr = new Array();//数组，存储周围八个格子的索引
@@ -37,8 +37,8 @@
                 for(var j = 0;j<this.num1;j++)
                 {
                     var tile = document.createElement('div');//创建小格子
-                    tile.className = 'tile';//定义小格子class
-                    tile.index = indexOfdiv;//为每个小格子添加索引
+                    tile.className = 'tile';
+                    tile.index = indexOfdiv;
                     this.tiles[indexOfdiv] = tile;//将小格子存入数组中
                     indexOfdiv++;
                     this.obj.appendChild(tile);//将小格子加入对象
@@ -70,7 +70,7 @@
             }
             this.obj.onmousedown = function(e)//鼠标按下事件-点击的操作
             {
-                var index = e.target.index;//格子的索引
+                var index = e.target.index;
                 if(e.button == 1)//e.button属性 左键0/中键1/右键2
                 {
                     event.preventDefault();//如果是中建，取消默认操作
@@ -253,17 +253,16 @@
                 arr2 = this.arr;
                 for (var i = 0; i < arr2.length; i++) //遍历周围的格子
                 {
-                    if (arr2[i].className != "showed"&&arr2[i].className !='biaoji') //如果周围格子没有显示或者标记
-                    {
-                        if (arr2[i].getAttribute("value") == 0) //如果周围的格子周围雷数也为0
+                    if (arr2[i].className != "showed"&&arr2[i].className !='biaoji') 
+                        if (arr2[i].getAttribute("value") == 0) 
                         {
-                            arr2[i].className = "showed";//翻开这个格子
+                            arr2[i].className = "showed";
                             this.ShowAll(arr2[i].index);//递归显示
                         } 
-                        else //如果周围的格子周围雷数不为0
+                        else 
                         {
-                            arr2[i].className = "showed";//翻开这个格子
-                            arr2[i].innerHTML = arr2[i].getAttribute("value");//显示这个格子周围的雷数
+                            arr2[i].className = "showed";
+                            arr2[i].innerHTML = arr2[i].getAttribute("value");
                         }
                     }
                 }
@@ -393,7 +392,6 @@
             return str;
         },
 
-        //统计信息：还是比较全的和windows7扫雷版的判断项目是一样的，使用的是每次结束游戏后将数据存入localStorage中，
         //数组details[难度][x]：[0]:已玩游戏，[1]:已胜游戏，[2]:胜率，[3]:最多连胜，[4]:最多连败，[5]:当前连局；[6]:平均耗时
         DetailStatistics:function(play, state)//传入0开始/1结束和胜负（ture-胜，false-败）
         {
